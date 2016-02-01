@@ -9,6 +9,8 @@ deploy:
     secure: zFNIe5+hLFX0kRA4Y342KhkEfceYPFwtOsrU85US8gJjnG+w7hNfLrBOVWvhqtQ11O309R0ilFuvmuwSOPR8Zru/HHfvHSMbsPOmLtFrxEz9+Us2c52Pcnp7va9j99i3CCYXzDwYxh5gQOT7a7HRqIOvyZ/Uq+6gqfXAlkesDHgNHH9uykNPwMgcLIEIRvRvmRTh7SsvDW8QjFQWidENyRgxGnXg0T78UhFOwXgsdOT7/xt8hsAusjMro1Ntp6P1V7IVAeujMk8Zl/a+YxaMKIdk5MdWT0nQvWIGf9dj4ZzkbKl73n/ox1XVlie2Wu7ipQB53Z6mvudGfzHbILTNNcxOM0ezVZRljyHw2ZbaMdoAmDc8NTFQuXj4xPYLWsrwInRpnlMRZTKX/TVYXI67Wobqhg1vKEsUtPMTrhF949FEphCyJHCCV0wyvtjuZ6dHGrwW2j8ZSXmjtdbLKmBBq66avb91bs0itfTGabsfRrNtx+6EELJhoIxwmItliF2Ta/NExcXInuYpkBRO7LYSdz1jhn0HUcq0EVmFdaZU3hCbYDMSk/RuPqkXltd6seTgr1J89O8QruhcZmuGT2x+9W0Jat4GkUCWQpLH5rzpJ/5cY182FZxSZj7ZlTS9zL6hPscnhn4sAoDJEdjmZU74cgLaGcdrHNlMWf6PR6sDIIc=
   bucket: mariusz-matusiak
   upload-dir: apps/Worker
+  skip_cleanup: true
+  region: us-west-2
   acl: private
   on:
     repo: mariuszmatusiak/Worker
