@@ -1,14 +1,15 @@
 language: node_js
 node_js:
+- '0.11'
 - '0.10'
 before_install: npm install -g mocha
 deploy:
   provider: s3
-  access_key_id: AKIAJGJ7TS3KP6YWZZDQ
+  access_key_id: AKIAJGJ7TS3KP6YWZZD
   secret_access_key:
-    secure: CMEe2pgTHOzPk9xemexKlZO2p6BAkrNkFE+kPH1RDxLLWnGD2k/mR37nWdW/PDpp9ij7xTk96b4Fapafozde5mqWGxRdoo85tVppDObbhY7BjfEDbOmizpfZ80FxFMkYePcHWNPjx/DKZmBk/OuvR+UrrBE1DRs4ZQWerHcGPSE09V9RHM/h+BKagGts5S0ijdMAkpGOvixeLUoa14Rx6WtEKboVOG+76UG2d2v5gU/8s6M6KYxbly4svPBWRNC2fIMtEraxrSxPmofe+zbDe5CUawPlWWXb97OmrgwcYQ1j5hhGxqR/tSEgqV0zBS8mOuk7UFM7LOcP+++Bk3eqc9s9QzG/RShwg/kHlONLIRO+2cI4VWlFQligKFLnETqppEYYSeACUiOXyYqC1EVAMODT5bzY2/uVI6lVFoMCf9EfodVggC33xk6m1RJh3r+bKs5XaStqZIzCZ05kKYWdyb06DpQdeedpAF0u+EKvyhVIZmnhlpuQXDv/6h2TqXvN7RYKcKRv0CHpDQu5z5YdQr9fjuOplSRFfNABFuhlq9suW382/LiXtXf7kTsdOYS5EF27590U4meAWPYnktv7Z5Km/ihmKb7y4Us8faGjmYElejLawvrtRKm4tpTKZrOR2aRIV/SrgoJRj1LVPY828ld3dMq+vuG1muwAMx2RM1Q=
-  bucket: 'mariusz-matusiak'
-  upload-dir: 'apps/Worker'
+    secure: XTn/MLZyCJBerfKoTHS1UgngNH2THFWyXSVdK6kj9mh5DIzw58kS9Z+08sKWqb5BvG2T0+w/TWQp/1sr1nk3V5HWT44Up7hKzzI/i1Vz/tMCOD3n2jQBxfxAscMH+rNG7B9VdsvHMgZnwipTuwgzOGxFIMXHxHQBGmyzsJ5XqvKzJ/g+cfiB4jhvgvwih7KnL/60H9DLF/otWoJwP+NKd75+gm8WUcM0WfMRzLXlDE917vpZUdarsHBuzrVvJCN2gl81soFB4XLNeQH9eksnVloQ69hB46abNfm5UjffdAlWi3FPFRtF2xZCa5SoIzQSljxXeX5gHuqt2/qrrfdLzQ7nyVOIT5KjSBLcaAk/sFMN0Csnu1M8LJpj3dGnEIsRt6Ra28V0/heB/hFglDkFuMzLtptvgJC7ZLrvwZjWtfSGLG+If5VfH1j7J+FkJQ1S8huunHyQT8bNW2Z1hsEOLpyxE7vCrdRQM6KnJIcUFazR7vERi0RVbBzmb8vyZ3L1kVpM3e87BG4mgNxue1PyEhy+jUZPGLdSKen1MoaRQ248Gy1NakTb48qmXjJ+fxnIekSdGzhaMqtxA38qYbERKOpHsHYHEL6bPS88dLVWhoLgcocvhsNoqtbG+RClyrUvn/kyMoRBBSnxoZMTtpAIrgrcWbgqIuZfCEAaoSVmV+A=
+  bucket: mariusz-matusiak
+  upload-dir: apps/Worker
   acl: private
   on:
     repo: mariuszmatusiak/Worker
