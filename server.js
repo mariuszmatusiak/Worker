@@ -5,7 +5,6 @@ var async = require('async');
 var fs = require('fs');
 var aws_cfg_file = "./config.json";
 var queueUrl = "https://sqs.us-west-2.amazonaws.com/983680736795/matusiakSQS";
-var im = require('node-imagemagick');
 var lwip = require('lwip');
 
 aws.config.loadFromPath(aws_cfg_file);
