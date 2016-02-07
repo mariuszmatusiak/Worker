@@ -7,7 +7,7 @@ var aws_cfg_file = "./config.json";
 var queueUrl = "https://sqs.us-west-2.amazonaws.com/983680736795/matusiakSQS";
 var lwip = require('lwip');
 
-aws.config.loadFromPath(aws_cfg_file);
+aws.config.update({ region: 'us-west-2' });
 
 async.whilst(
     function () { return true },
