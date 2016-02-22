@@ -30,28 +30,29 @@ async.whilst(
                         QueueUrl: queueUrl,
                         ReceiptHandle: data.Messages[0].ReceiptHandle
                     };
-                    downloadFile(operations['file'], function (err, info) {
-                        console.log(err + ": " + info);
-                        //sendNotification();
-                        prepareFile(operations, function (data) {
-                            if (data) {
-                                console.log(data);
-                                var parameters = {
-                                    key: operations.file,
-                                    filename: data
-                                };
-                                sendToS3(parameters, function (err, notes) {
-                                    if (err)
-                                        console.log(err + ": " + notes);
-                                    else
-                                        console.log(notes);
-                                });
-                            }
-                            else {
-                                console.log(data);
-                            }
+                    for (var i = 0; i < operations.file.length; i++) {
+                        downloadFile(operations.file[i], function (err, info) {
+                            console.log(err + ": " + info);
+                            prepareFile(operations, info, function (data) {
+                                if (data) {
+                                    console.log(data);
+                                    var parameters = {
+                                        key: data.Key,
+                                        filename: data.Path
+                                    };
+                                    sendToS3(parameters, function (err, notes) {
+                                        if (err)
+                                            console.log(err + ": " + notes);
+                                        else
+                                            console.log(notes);
+                                    });
+                                }
+                                else {
+                                    console.log(data);
+                                }
+                            });
                         });
-                    });
+                    }
                     sqs.deleteMessage(params, function (err, data) {
                         if (err) console.log(err, err.stack);
                         else console.log(data);
@@ -115,19 +116,21 @@ var downloadFile = function (key, callback){
         Bucket: 'mariusz.matusiak',
         Key: key
     };
-    s3.getObject(params, function (err, data) {
-        if (err) callback(err, err.stack);
-        else {
-            var pos = key.lastIndexOf("/");
-            var path = key.substring(pos+1);
+        s3.getObject(params, function (err, data) {
+            if (err) callback(err, err.stack);
+            else {
+                var pos = key.lastIndexOf("/");
+                var path = key.substring(pos + 1);
             fs.writeFileSync(path, data.Body);
-            callback(null, path);
-        }
-    });
+            var keypath = { Key: key, Path: path };
+                callback(null, keypath);
+            }
+        });
+    
 }
 
-var prepareFile = function (operations, callback){
-    var filename = operations.file.substring(operations.file.lastIndexOf("/") + 1);
+var prepareFile = function (operations, file, callback){
+    var filename = file.Path;
     lwip.open(filename, function (err, image) {
         var batch = image.batch();
         if (typeof operations.blur != "undefined") {
@@ -146,8 +149,11 @@ var prepareFile = function (operations, callback){
             console.log(err);
             if (err)
                 callback(null);
-            else
-                callback("out_" + filename);
+            else {
+                file.Path = "out_" + filename;
+                callback(file);
+            }
+
         });
     });
 }
